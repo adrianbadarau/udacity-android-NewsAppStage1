@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+    <string name="no_items_lbl">There are no items to display, please check if you have internet access or the api has not hit the limit</string>
+</resources>
