@@ -44,6 +44,9 @@ public class NewsItemAdapter extends ArrayAdapter<NewsApiItem> {
         TextView headline = convertView.findViewById(R.id.news_item_headline_tv);
         headline.setText(item.getWebTitle());
 
+        TextView author = convertView.findViewById(R.id.news_item_author_tv);
+        author.setText(item.getAuthorName());
+
         TextView section = convertView.findViewById(R.id.news_item_section_tv);
         section.setText(item.getSectionName());
 

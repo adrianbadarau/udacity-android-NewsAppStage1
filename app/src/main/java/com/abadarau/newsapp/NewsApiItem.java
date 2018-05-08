@@ -8,6 +8,7 @@ public class NewsApiItem {
     private String webTitle;
     private String webUrl;
     private String apiUrl;
+    private String authorName;
 
     public String getId() {
         return id;
@@ -63,5 +64,13 @@ public class NewsApiItem {
 
     public void setApiUrl(String apiUrl) {
         this.apiUrl = apiUrl;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }

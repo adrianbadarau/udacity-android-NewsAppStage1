@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<NewsApiItem>> loader, List<NewsApiItem> data) {
         newsItemAdapter.setItems(data);
-//        newsItemAdapter.setItems(new ArrayList<NewsApiItem>());
     }
 
     @Override
