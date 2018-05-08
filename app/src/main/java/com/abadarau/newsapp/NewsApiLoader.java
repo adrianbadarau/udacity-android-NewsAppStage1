@@ -19,6 +19,15 @@ import java.util.List;
 class NewsApiLoader extends AsyncTaskLoader<List<NewsApiItem>> {
 
     public static final String API_URL = "https://content.guardianapis.com/search?q=12%20years%20a%20slave&format=json&tag=film/film,tone/reviews&from-date=2010-01-01&show-tags=contributor&show-fields=starRating,headline,thumbnail,short-url&order-by=relevance&api-key=test";
+    public static final int CONNECT_TIMEOUT = 5000;
+    public static final String WEB_TITLE = "webTitle";
+    public static final String API_URL1 = "apiUrl";
+    public static final String SECTION_ID = "sectionId";
+    public static final String SECTION_NAME = "sectionName";
+    public static final String PUBLICATION_DATE = "webPublicationDate";
+    public static final String ID = "id";
+    public static final String WEB_URL = "webUrl";
+    public static final String TAGS = "tags";
 
     private boolean apiIsDown = false;
 
@@ -35,16 +44,16 @@ class NewsApiLoader extends AsyncTaskLoader<List<NewsApiItem>> {
             for (int i = 0; i < jsonArrayItems.length(); i++) {
                 NewsApiItem newsApiItem = new NewsApiItem();
                 JSONObject jsonNewsApiItem = jsonArrayItems.getJSONObject(i);
-                newsApiItem.setId(jsonNewsApiItem.getString("id"));
-                newsApiItem.setApiUrl(jsonNewsApiItem.getString("apiUrl"));
-                newsApiItem.setSectionId(jsonNewsApiItem.getString("sectionId"));
-                newsApiItem.setSectionName(jsonNewsApiItem.getString("sectionName"));
-                newsApiItem.setWebPublicationDate(jsonNewsApiItem.getString("webPublicationDate"));
-                newsApiItem.setWebTitle(jsonNewsApiItem.getString("webTitle"));
-                newsApiItem.setWebUrl(jsonNewsApiItem.getString("webUrl"));
-                JSONArray tags = jsonNewsApiItem.getJSONArray("tags");
+                newsApiItem.setId(jsonNewsApiItem.getString(ID));
+                newsApiItem.setApiUrl(jsonNewsApiItem.getString(API_URL1));
+                newsApiItem.setSectionId(jsonNewsApiItem.getString(SECTION_ID));
+                newsApiItem.setSectionName(jsonNewsApiItem.getString(SECTION_NAME));
+                newsApiItem.setWebPublicationDate(jsonNewsApiItem.getString(PUBLICATION_DATE));
+                newsApiItem.setWebTitle(jsonNewsApiItem.getString(WEB_TITLE));
+                newsApiItem.setWebUrl(jsonNewsApiItem.getString(WEB_URL));
+                JSONArray tags = jsonNewsApiItem.getJSONArray(TAGS);
                 if(tags != null && tags.length() > 0){
-                    newsApiItem.setAuthorName(tags.getJSONObject(0).getString("webTitle"));
+                    newsApiItem.setAuthorName(tags.getJSONObject(0).getString(WEB_TITLE));
                 }
                 newsApiItems.add(newsApiItem);
             }
@@ -63,8 +72,8 @@ class NewsApiLoader extends AsyncTaskLoader<List<NewsApiItem>> {
         URL url = new URL(NewsApiLoader.API_URL);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("GET");
-        httpURLConnection.setConnectTimeout(5000);
-        httpURLConnection.setReadTimeout(5000);
+        httpURLConnection.setConnectTimeout(CONNECT_TIMEOUT);
+        httpURLConnection.setReadTimeout(CONNECT_TIMEOUT);
         httpURLConnection.connect();
 
         if (httpURLConnection.getResponseCode() == 200) {

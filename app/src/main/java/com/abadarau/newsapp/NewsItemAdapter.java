@@ -57,7 +57,7 @@ public class NewsItemAdapter extends ArrayAdapter<NewsApiItem> {
     }
 
     public void setItems(List<NewsApiItem> items){
-        this.items.addAll(items);
+        this.items = items;
         notifyDataSetChanged();
     }
 
