@@ -1,4 +1,97 @@
 <resources>
     <string name="app_name">NewsApp</string>
     <string name="no_items_lbl">There are no items to display, please check if you have internet access or the api has not hit the limit</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_search_query">Search Query</string>
+    <string name="pref_default_search_query">Jimmy Whitworth</string>
+
+    <string name="pref_title_tag_list">Select Search Tag</string>
+    <string name="pref_default_title_tag_list">achievementsaward/judges</string>
+    <string-array name="pref_tag_list_titles">
+        <item>Judges Achievements Awards</item>
+        <item>Action for children</item>
+        <item>Information Power</item>
+    </string-array>
+    <string-array name="pref_tag_list_values">
+        <item>achievementsaward/judges</item>
+        <item>action-for-children/action-for-children</item>
+        <item>activate/information-power</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="api_scheme">https</string>
+    <string name="api_authority">content.guardianapis.com</string>
+    <string name="api_search_path">search</string>
+    <string name="api_key">api-key</string>
+    <string name="api_key_value">test</string>
+    <string name="api_search_query_key">q</string>
+    <string name="api_search_tag_key">tag</string>
+    <string name="api_search_from_date_key">from-date</string>
+    <string name="api_search_from_date_value">2010-01-01</string>
+    <string name="api_show_tags_key">show-tags</string>
+    <string name="api_show_tags_value">contributor</string>
+    <string name="api_format_key">format</string>
+    <string name="api_format_value">json</string>
+    <string name="api_show_fields_key">show-fields</string>
+    <string name="api_show_fields_value">Rating,headline,thumbnail,short-url</string>
 </resources>

@@ -2,6 +2,10 @@ package com.abadarau.newsapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +22,6 @@ import java.util.List;
 
 class NewsApiLoader extends AsyncTaskLoader<List<NewsApiItem>> {
 
-    public static final String API_URL = "https://content.guardianapis.com/search?q=12%20years%20a%20slave&format=json&tag=film/film,tone/reviews&from-date=2010-01-01&show-tags=contributor&show-fields=starRating,headline,thumbnail,short-url&order-by=relevance&api-key=test";
     public static final int CONNECT_TIMEOUT = 5000;
     public static final String WEB_TITLE = "webTitle";
     public static final String API_URL1 = "apiUrl";
@@ -68,8 +71,18 @@ class NewsApiLoader extends AsyncTaskLoader<List<NewsApiItem>> {
     }
 
     private String getApiData() throws IOException {
+        SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Uri.Builder builder = new Uri.Builder().scheme(getContext().getString(R.string.api_scheme)).authority(getContext().getString(R.string.api_authority)).appendPath(getContext().getString(R.string.api_search_path));
+        // Now we begin to add the query params needed
+        builder.appendQueryParameter(getContext().getString(R.string.api_key), getContext().getString(R.string.api_key_value));
+        builder.appendQueryParameter(getContext().getString(R.string.api_search_from_date_key),getContext().getString(R.string.api_search_from_date_value));
+        builder.appendQueryParameter(getContext().getString(R.string.api_show_tags_key),getContext().getString(R.string.api_show_tags_value));
+        builder.appendQueryParameter(getContext().getString(R.string.api_format_key),getContext().getString(R.string.api_format_value));
+        builder.appendQueryParameter(getContext().getString(R.string.api_show_fields_key),getContext().getString(R.string.api_show_fields_value));
+        builder.appendQueryParameter(getContext().getString(R.string.api_search_query_key), defaultSharedPreferences.getString(SettingsActivity.QUERY_KEY, getContext().getString(R.string.pref_default_search_query)));
+        builder.appendQueryParameter(getContext().getString(R.string.api_search_tag_key), defaultSharedPreferences.getString(SettingsActivity.TAG_KEY, getContext().getString(R.string.pref_default_title_tag_list)));
         StringBuilder responseString = new StringBuilder();
-        URL url = new URL(NewsApiLoader.API_URL);
+        URL url = new URL(builder.toString());
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("GET");
         httpURLConnection.setConnectTimeout(CONNECT_TIMEOUT);
@@ -82,6 +95,7 @@ class NewsApiLoader extends AsyncTaskLoader<List<NewsApiItem>> {
             while ((line = bufferedReader.readLine()) != null) {
                 responseString.append(line).append("\n");
             }
+
             return responseString.toString();
         } else if (apiIsDown) {
             return getDummyData();
