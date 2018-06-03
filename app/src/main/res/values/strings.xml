@@ -94,4 +94,5 @@
     <string name="api_format_value">json</string>
     <string name="api_show_fields_key">show-fields</string>
     <string name="api_show_fields_value">Rating,headline,thumbnail,short-url</string>
+    <string name="api_error_msg">There was an error with the connecting, got response code:</string>
 </resources>
